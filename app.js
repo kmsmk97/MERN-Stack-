@@ -2,13 +2,11 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-
+const router = require("./Routes/UserRoutes");
 const app = express();
 
 //Middleware
-app.use("/",(req, res, next) => {
-    res.send("Database is working");
-}) 
+app.use("/users",router);
 
 //Database connection
 
