@@ -7,6 +7,7 @@ const app = express();
 
 //Middleware
 app.use("/users",router);
+app.use(express.json());
 
 //Database connection
 

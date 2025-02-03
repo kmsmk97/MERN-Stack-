@@ -5,9 +5,11 @@ const router = express.Router();
 const User = require("../Model/UserModel");
 
 //Insert user control
-const UserController = require("../Controllers/UserControler");
+const UserController = require("../Controllers/UserControllers");
 
 router.get("/",UserController.getAllUsers);
+router.post("/",UserController.addUsers);
 
 //export
 module.exports = router;
+
