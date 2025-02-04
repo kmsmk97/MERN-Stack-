@@ -6,8 +6,9 @@ const router = require("./Routes/UserRoutes");
 const app = express();
 
 //Middleware
-app.use("/users",router);
 app.use(express.json());
+app.use("/users",router);
+
 
 //Database connection
 
