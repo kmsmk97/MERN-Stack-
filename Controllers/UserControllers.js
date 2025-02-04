@@ -67,6 +67,36 @@ const getById = async (req,res,next) =>{
 
 
 }
+
+//Update data
+const updateUser = async (req,res,next) => {
+    const id = req.params.id;
+
+    const {name,gmail,age,address} = req.body;
+
+    let users;
+
+    try{
+
+        users = await User.findByIdAndUpdate(
+            id, {name:name, gmail: gmail, age:age, address:address});
+            users = await users.save();
+
+    }catch(err){
+        console.log(err);
+    }
+
+       //If not displayed
+
+       if(!users){
+        return res.status(404).json ({messege: "Unable to update since no user by ID"});
+    }
+    return res.status(200).json({users});
+    
+
+}
+
 exports.getById = getById;
 exports.getAllUsers = getAllUsers;
 exports.addUsers = addUsers;
+exports.updateUser = updateUser;
