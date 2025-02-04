@@ -92,11 +92,31 @@ const updateUser = async (req,res,next) => {
         return res.status(404).json ({messege: "Unable to update since no user by ID"});
     }
     return res.status(200).json({users});
+    }
+    //Delete User Details
+    const deleteUser = async (req,res,next) => {
+        const id = req.params.id;
+
+        let user;
+
+        try{
+            user = await User.findByIdAndDelete(id);
+        }catch(err){
+            console.log(err);
+        }
+
+        //If not
+        
+       if(!user){
+        return res.status(404).json ({messege: "Unable to detele"});
+    }
+    return res.status(200).json({user});
     
 
-}
+};
 
 exports.getById = getById;
 exports.getAllUsers = getAllUsers;
 exports.addUsers = addUsers;
 exports.updateUser = updateUser;
+exports.deleteUserr = deleteUser;
