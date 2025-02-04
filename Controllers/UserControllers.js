@@ -44,5 +44,29 @@ const addUsers = async (req, res,next) =>{
     }
     return res.status(200).json({users});
 }
+
+//Get user details by ID
+//Function creatiom
+const getById = async (req,res,next) =>{
+    const id = req.params.id;
+
+    let user;
+
+    try{
+        user = await User.findById(id);
+    }catch(err){
+        console.log(err);
+    }
+
+    //If not displayed
+
+    if(!user){
+        return res.status(404).json ({messege: "User not available"});
+    }
+    return res.status(200).json({user});
+
+
+}
+exports.getById = getById;
 exports.getAllUsers = getAllUsers;
 exports.addUsers = addUsers;
